@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/toto', function(){
 	return "Bienvenue toto";
   });
+  Route::get('/jeu', function () {
+    return view('Games');
+});
