@@ -1,4 +1,7 @@
 <?php
+
+use App\Http\Controllers\PersonController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //phpinfos();
+	return view('welcome');
 });
 Route::get('/toto', function(){
 	return "Bienvenue toto";
@@ -23,3 +27,20 @@ Route::get('/toto', function(){
 });
 */
 Route::view('/jeu','Games');
+
+
+
+
+
+
+Route::get('Hi', [PersonController::class, 'hi']);
+
+Route::get('users/Hi/{name}', [PersonController::class, 'hi'])->where('name','[A-z]+');
+
+
+Route::get('users/List', [PersonController::class, 'getUsersList']);
+Route::get('users/SearchByName/{name}', [PersonController::class, 'getUsersByName']);
+Route::get('users/SearchByFirstname/{firstname}', [PersonController::class, 'getUsersByFirstname']);
+Route::get('users/SearchBySomehting/{thing}', [PersonController::class, 'getUsersBySomething']);
+
+Route::get('bonjour/{n}', [PersonController::class, 'hi'])->where('n','[A-z]+')->name("HelloYou");

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PersonController extends Controller
+class JohnController extends Controller
 {
-    private array $users = [
+private array $users = [
         [
             "name" => "Piette",
             "firstname" => "Johnny"
