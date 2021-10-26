@@ -72,4 +72,31 @@ class PersonController extends Controller
         }
         return $array;
     }
+
+	public function searchForm(Request $request)
+	{
+		$array = array();
+		$name = $request->input('name'); 
+		$firstname = $request->input('firstName');
+	
+		#On recherche sur le nom ET prénom
+		if (isset($name) && isset($firstname)) {
+			foreach ($this->users as $user) {
+				$userObj = (object)$user;
+				if (strtolower($userObj->name) === strtolower($name) && strtolower($userObj->firstname) === strtolower($firstname)) {
+					array_push($array, $user);
+				}
+			}
+		} else {
+			#On recherche sur le prénom
+			if (!isset($name) && isset($firstname)) {
+				return $this->getUsersByFirstname($firstname);
+			}
+			#On recherche sur le nom
+			if (isset($name) && !isset($firstname)) {
+				return $this->getUsersByName($name);
+			}
+		}
+		return view('results', ['users' => $array]);        
+	}
 }

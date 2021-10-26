@@ -44,3 +44,10 @@ Route::get('users/SearchByFirstname/{firstname}', [PersonController::class, 'get
 Route::get('users/SearchBySomehting/{thing}', [PersonController::class, 'getUsersBySomething']);
 
 Route::get('bonjour/{n}', [PersonController::class, 'hi'])->where('n','[A-z]+')->name("HelloYou");
+
+
+Route::get('search',function () {
+	return view('search');
+});
+
+Route::post('users', [PersonController::class, 'searchForm']);
